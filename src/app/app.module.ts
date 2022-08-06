@@ -7,12 +7,14 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { LetterOnlyDirective } from './shared/directives/letter-only.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountryComponent,
-    SearchUiComponent
+    SearchUiComponent,
+    LetterOnlyDirective
   ],
   imports: [
     BrowserModule,
