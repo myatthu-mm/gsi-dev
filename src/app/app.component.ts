@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gsi-dev';
+  list = Array(300).fill('Thailand');
+  @ViewChild('search') searchElement!: ElementRef;
+
+  @HostListener('document:keydown.meta.k')
+  focusOnSearch() {
+    this.searchElement.nativeElement.focus();
+  }
 }
