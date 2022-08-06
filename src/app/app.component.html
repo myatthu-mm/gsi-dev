@@ -2,14 +2,24 @@
   <h1 class="text-5xl mb-7">GSI Dev Frontend Exam</h1>
 
   <div class="w-full">
-    <app-search-ui></app-search-ui>
+    <app-search-ui (filterEvent)="onFilter($event)"></app-search-ui>
 
-    <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="w-full my-5 h-screen overflow-scroll">
-      <div *cdkVirtualFor="let data of list">
-        <app-country [country]="data"></app-country>
+    <div *ngIf="loading$ | async; else countries">
+      <div class="flex justify-center items-center my-16">
+        <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-500"></div>
       </div>
-    </cdk-virtual-scroll-viewport>
+    </div>
 
   </div>
 
 </div>
+
+<ng-template #countries>
+  <p class="mt-5 text-lg font-light text-gray-500 dark:text-gray-400" [hidden]="!!((countries$ | async)?.length)">No data found</p>
+
+  <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="w-full my-5 h-screen overflow-scroll border-t border-b">
+    <div *cdkVirtualFor="let data of countries$ | async">
+      <app-country [country]="data"></app-country>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</ng-template>

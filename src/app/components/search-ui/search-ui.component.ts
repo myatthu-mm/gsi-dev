@@ -1,4 +1,6 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-ui',
@@ -6,8 +8,15 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
   styleUrls: ['./search-ui.component.scss']
 })
 export class SearchUiComponent implements OnInit {
+  @Output() filterEvent = new EventEmitter<string>();
+  searchTerm$ = new Subject<string>();
 
-  constructor() { }
+  constructor() {
+    this.searchTerm$
+      .pipe(debounceTime(800),
+        distinctUntilChanged())
+      .subscribe(searchValue => this.filterEvent.emit(searchValue));
+  }
 
   @ViewChild('search') searchElement!: ElementRef;
 
@@ -17,6 +26,10 @@ export class SearchUiComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  searchByName($event: Event): void {
+    this.searchTerm$.next(($event.target as HTMLInputElement)?.value.trim().toLowerCase());
   }
 
 }
