@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gsi-dev';
-  list = Array(300).fill('Thailand');
+  list = Array.from({length: 300}).map((_, i) => `Item #${i}`);
 }

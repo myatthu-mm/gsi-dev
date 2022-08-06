@@ -4,12 +4,12 @@
   <div class="w-full">
     <app-search-ui></app-search-ui>
 
-    <!-- List Container -->
-    <div class="w-full my-5 h-screen overflow-scroll">
-      <ng-container *ngFor="let data of list">
+    <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="w-full my-5 h-screen overflow-scroll">
+      <div *cdkVirtualFor="let data of list">
         <app-country [country]="data"></app-country>
-      </ng-container>
-    </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+
   </div>
 
 </div>
