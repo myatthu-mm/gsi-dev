@@ -33,7 +33,7 @@ describe('SearchUiComponent', () => {
     expect(component.filterEvent.emit).toHaveBeenCalled();
   }));
 
-  it('should not output duplicate value', () => {
+  it('should not fire duplicate output value', () => {
     // arrange
     spyOn(component.filterEvent, 'emit');
     component.searchTerm$.next('thailand');
@@ -47,7 +47,7 @@ describe('SearchUiComponent', () => {
     // arrange
     spyOn(component.searchElement.nativeElement, 'focus');
     // act
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, ctrlKey: true }));
     // assert
     expect(component.searchElement.nativeElement.focus).toHaveBeenCalled();
   });

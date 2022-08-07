@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CountryQuery } from './state/country/country.query';
@@ -7,7 +7,6 @@ import { Country } from './state/country/country.model';
 import { By } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { CountryService } from './state/country/country.service';
-import { ScrollingModule,  } from '@angular/cdk/scrolling';
 import { CountryStore } from './state/country/country.store';
 
 export function findComponent<T>(
@@ -33,7 +32,6 @@ describe('AppComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         HttpClientTestingModule,
-        ScrollingModule
       ],
       providers: [
         CountryQuery,
@@ -96,10 +94,20 @@ describe('AppComponent', () => {
     // assert
     expect(loadStateMethod).toHaveBeenCalled();
   });
+
+  it('should listen for search filter', () => {
+    // arrange
+    const onFilterMethod = spyOn(component, 'onFilter').and.callThrough();
+    const searchFilter = findComponent(fixture, 'app-search-ui');
+    // act
+    searchFilter.triggerEventHandler('filterEvent', 'thai');
+    fixture.detectChanges();
+    // assert
+    expect(onFilterMethod).toHaveBeenCalled();
+  });
   
 
-  
-  
+
 
 
 });
