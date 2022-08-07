@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Directive({
-    selector: 'input[letterOnly]'
+    selector: 'input[appLetterOnly]'
 })
 export class LetterOnlyDirective {
 

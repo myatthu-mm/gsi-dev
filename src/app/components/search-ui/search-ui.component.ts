@@ -1,6 +1,6 @@
-import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 type OS = 'Windows' | 'Mac';
 
@@ -9,7 +9,7 @@ type OS = 'Windows' | 'Mac';
   templateUrl: './search-ui.component.html',
   styleUrls: ['./search-ui.component.scss']
 })
-export class SearchUiComponent implements OnInit {
+export class SearchUiComponent {
   @Output() filterEvent = new EventEmitter<string>();
   searchTerm$ = new Subject<string>(); // purpose for distinct value check and search delay control
 
@@ -35,9 +35,6 @@ export class SearchUiComponent implements OnInit {
       return 'Windows';
     }
     return 'Mac';
-  }
-
-  ngOnInit(): void {
   }
 
   searchByName(value: string): void {

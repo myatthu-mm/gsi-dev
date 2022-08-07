@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filter, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Country } from './state/country/country.model';
 import { CountryQuery } from './state/country/country.query';
 import { CountryService } from './state/country/country.service';
