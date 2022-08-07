@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filter } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { Country } from './state/country/country.model';
 import { CountryQuery } from './state/country/country.query';
 import { CountryService } from './state/country/country.service';
@@ -11,11 +11,13 @@ import { CountryService } from './state/country/country.service';
 })
 export class AppComponent implements OnInit {
   constructor(private countryService: CountryService, private countryQuery: CountryQuery) { }
-  
-  public countries$ = this.countryQuery.selectAll();
-  public loading$ = this.countryQuery.selectLoading();
+
+  public countries$!: Observable<Country[]>;
+  public loading$!: Observable<boolean>;
 
   ngOnInit(): void {
+    this.countries$ = this.countryQuery.selectAll();
+    this.loading$ = this.countryQuery.selectLoading();
     this.getCountries();
   }
 
@@ -29,6 +31,6 @@ export class AppComponent implements OnInit {
         (entity: Country) => entity.name.common.toLowerCase().includes(query)
       ]
     });
-  } 
+  }
 
 }

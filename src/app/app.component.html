@@ -9,13 +9,12 @@
         <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-500"></div>
       </div>
     </div>
-
   </div>
 
 </div>
 
 <ng-template #countries>
-  <p class="mt-5 text-lg font-light text-gray-500 dark:text-gray-400" [hidden]="!!((countries$ | async)?.length)">No data found</p>
+  <p class="mt-5 text-lg font-light text-gray-500 dark:text-gray-400 nodata" *ngIf="!(countries$ | async)?.length">No data found</p>
 
   <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="w-full my-5 h-screen overflow-scroll border-t border-b">
     <div *cdkVirtualFor="let data of countries$ | async">

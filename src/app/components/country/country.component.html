@@ -1,4 +1,4 @@
-<div class="border border-gray-400 shadow-sm shadow-gray-400 flex flex-col sm:flex-row gap-3 justify-between px-5 py-3 my-4 rounded-md">
+<div *ngIf="country" class="border border-gray-400 shadow-sm shadow-gray-400 flex flex-col sm:flex-row gap-3 justify-between px-5 py-3 my-4 rounded-md">
     <div>
         <h3 class="font-bold text-lg text-blue-500">{{ country.name.common }}</h3>
         <div class="flex gap-1">

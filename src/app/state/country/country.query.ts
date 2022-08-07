@@ -10,8 +10,4 @@ export class CountryQuery extends QueryEntity<CountryState> {
     super(store);
   }
 
-  // public findByName(name: string): Array<Country> {
-  //   return this.select(name);
-  // }
-
 }
