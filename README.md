@@ -207,4 +207,4 @@ JavaScript, HTML, CSS, TypeScript, Java, Angular 2+, Jasmine, Spring Boot, and s
 
 ## Feedback
 
-If you have any feedback, please reach out to us at *mt29.myatthu@gmail.com*
+If you have any feedback, please reach out to me at *mt29.myatthu@gmail.com*
